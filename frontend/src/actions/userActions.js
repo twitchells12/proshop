@@ -4,7 +4,6 @@ import {
   USER_LOGIN_SUCCESS,
 } from '../constants/userConstants';
 import axios from 'axios';
-import { json } from 'express';
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -19,7 +18,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      '/api/user/login',
+      '/api/users/login',
       { email, password },
       config
     );
