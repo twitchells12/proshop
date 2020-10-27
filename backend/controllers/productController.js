@@ -88,13 +88,14 @@ const updateProduct = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc Create new review
-// @route POST /api/products/:id/reviews
-// @access Private
+// @desc    Create new review
+// @route   POST /api/products/:id/reviews
+// @access  Private
 const createProductReview = asyncHandler(async (req, res) => {
   const { rating, comment } = req.body;
 
   const product = await Product.findById(req.params.id);
+
   if (product) {
     const alreadyReviewed = product.reviews.find(
       (r) => r.user.toString() === req.user._id.toString()
@@ -121,7 +122,7 @@ const createProductReview = asyncHandler(async (req, res) => {
       product.reviews.length;
 
     await product.save();
-    res.status(201).json({ message: 'Review Added' });
+    res.status(201).json({ message: 'Review added' });
   } else {
     res.status(404);
     throw new Error('Product not found');
